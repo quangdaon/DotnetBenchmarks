@@ -1,6 +1,6 @@
 # Quangdao's Benchmarks
 
-I've been created random standalone local benchmarking projects, so I decided to just create a central one that's version controlled.
+I've created random standalone local benchmarking projects, so I decided to just create a central one that's version controlled.
 
 ## Running the Benchmarks
 
