@@ -8,6 +8,4 @@ I've been created random standalone local benchmarking projects, so I decided to
 dotnet run -c Release
 ```
 
-## Selecting Benchmarks to Run
-
-Edit the Program.cs file.
+This opens the benchmark switcher and will prompt you to select which benchmarks to run. To run all of them, enter `*`.

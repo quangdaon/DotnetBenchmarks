@@ -3,7 +3,7 @@ using Bogus;
 
 namespace Benchmarks.Specs;
 
-public class CountsEntity
+public class MultipleCountsEntity
 {
     public int PropertyA { get; set; }
     public int PropertyB { get; set; }
@@ -11,7 +11,7 @@ public class CountsEntity
     public int PropertyD { get; set; }
 }
 
-public record CountsResult
+public record MultipleCountsResult
 {
     public int PropertyA { get; set; }
     public int PropertyB { get; set; }
@@ -19,21 +19,21 @@ public record CountsResult
     public int PropertyD { get; set; }
 }
 
-public class CountsBenchmark
+public class MultipleCountsBenchmark
 {
-    private IEnumerable<CountsEntity> _entities = new List<CountsEntity>();
+    private IEnumerable<MultipleCountsEntity> _entities = new List<MultipleCountsEntity>();
 
     [GlobalSetup]
     public void Setup()
     {
-        var faker = new Faker<CountsEntity>().RuleForType(typeof(int), f => f.Random.Number(1, 10));
+        var faker = new Faker<MultipleCountsEntity>().RuleForType(typeof(int), f => f.Random.Number(1, 10));
         _entities = faker.Generate(100);
     }
 
     [Benchmark]
     public void GetCountsLinq()
     {
-        var result = new CountsResult
+        var result = new MultipleCountsResult
         {
             PropertyA = _entities.Count(e => e.PropertyA > 5),
             PropertyB = _entities.Count(e => e.PropertyB > 5),
@@ -45,7 +45,7 @@ public class CountsBenchmark
     [Benchmark]
     public void GetCountsForeach()
     {
-        var result = new CountsResult();
+        var result = new MultipleCountsResult();
 
         foreach (var entity in _entities)
         {
@@ -59,7 +59,7 @@ public class CountsBenchmark
     [Benchmark]
     public void GetCountsAggregate()
     {
-        var result = _entities.Aggregate(new CountsResult(), (e, entity) =>
+        var result = _entities.Aggregate(new MultipleCountsResult(), (e, entity) =>
         {
             if (entity.PropertyA > 5) e.PropertyA++;
             if (entity.PropertyB > 5) e.PropertyB++;

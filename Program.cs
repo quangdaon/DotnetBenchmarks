@@ -3,4 +3,4 @@
 using BenchmarkDotNet.Running;
 using Benchmarks.Specs;
 
-BenchmarkRunner.Run<CountsBenchmark>();
+BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
